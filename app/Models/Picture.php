@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Picture extends Model
 {
@@ -12,9 +13,10 @@ class Picture extends Model
         'path',
         'user_id'
     ];
-    public function user()
+
+    public function gallery()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\Gallery');
     }
 
     public function comments()
