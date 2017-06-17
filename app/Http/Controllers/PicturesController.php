@@ -32,15 +32,15 @@ class PicturesController extends Controller
         {
             $picture = $request->file('picture');
             return $picturePath = $request->file('picture')
-                ->storeAs('picture/'
-                    . Auth::user()->name, $request->title
-                    . '.' . $picture->extension());
+                ->storeAs('public/pictures/' . Auth::user()->name,
+                    $request->title . '.' . $picture->extension());
         }
+        return 'error';
     }
     //test
     public function showPictures()
     {
-        return Storage::allFiles('public');
+        return Storage::url('qwe');
     }
 
 }

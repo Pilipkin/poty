@@ -15,11 +15,14 @@ class CreatingModels extends Migration
     {
         Schema::create('picture_comments', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('picture_id')->unsigned()
+            $table->integer('picture_id')
+                ->unsigned()
                 ->nullable();
-            $table->integer('parent_id')->unsigned()
+            $table->integer('parent_id')
+                ->unsigned()
                 ->nullable();
-            $table->integer('user_id')->unsigned()
+            $table->integer('user_id')
+                ->unsigned()
                 ->nullable();
             $table->text('body');
             $table->timestamps();
@@ -27,11 +30,14 @@ class CreatingModels extends Migration
 
         Schema::create('votes', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('model_id')->unsigned()
+            $table->integer('model_id')
+                ->unsigned()
                 ->nullable();
             $table->text('model_name');
-            $table->boolean('direction')->nullable();
-            $table->integer('user_id')->unsigned()
+            $table->boolean('direction')
+                ->nullable();
+            $table->integer('user_id')
+                ->unsigned()
                 ->nullable();
             $table->timestamps();
         });
@@ -42,9 +48,11 @@ class CreatingModels extends Migration
         });
 
         Schema::create('picture_tag', function(Blueprint $table) {
-            $table->integer('picture_id')->unsigned()
+            $table->integer('picture_id')
+                ->unsigned()
                 ->nullable();
-            $table->integer('tag_id')->unsigned()
+            $table->integer('tag_id')
+                ->unsigned()
                 ->nullable();
             $table->dateTime('created_at');
         });
@@ -57,6 +65,9 @@ class CreatingModels extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('picture_tag');
+        Schema::dropIfExists('tags');
+        Schema::dropIfExists('picture_comments');
+        Schema::dropIfExists('votes');
     }
 }
