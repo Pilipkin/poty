@@ -14,6 +14,6 @@ class PictureComment extends Model
 
     public function picture()
     {
-        return $this->belongsTo('App\Models\Picture');
+        return $this->belongsTo(Picture::class);
     }
 }

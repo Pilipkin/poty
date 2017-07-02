@@ -30,17 +30,19 @@ class PicturesController extends Controller
     {
         if($request->hasFile('picture'))
         {
-            $picture = $request->file('picture');
-            return $picturePath = $request->file('picture')
+            $requestPicture = $request->file('picture');
+            $picture = new Picture;
+            $picture->gallery_id = 1;
+            $picture->title = $request->title;
+            $picture-> description = $request->description;
+            $picturePath = $requestPicture
                 ->storeAs('public/pictures/' . Auth::user()->name,
-                    $request->title . '.' . $picture->extension());
+                    md5($picture->title . Auth::user()->id) . '.' . $requestPicture->extension());
+            $picture->path = $picturePath;
+            $picture->save();
+            return $picturePath;
         }
         return 'error';
-    }
-    //test
-    public function showPictures()
-    {
-        return Storage::url('qwe');
     }
 
 }

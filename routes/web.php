@@ -7,11 +7,11 @@ Route::get('/', function () {
 });
 Route::post('/pictures', 'PicturesController@storePicture');
 Route::get('/pictures/submit', 'PicturesController@submit');
-Route::get('/pictures/{picture}', 'PicturesController@showPictures');
-
-Route::get('/show', 'PicturesController@showPictures');
+Route::get('/pictures/{picture}', 'PicturesController@show');
 
 
 Route::get('/home', 'PicturesController@index');
+
+Route::get('/showGallery', 'GalleryController@index');
 
 Auth::routes();

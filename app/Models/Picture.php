@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Gallery;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,18 +15,18 @@ class Picture extends Model
         'user_id'
     ];
 
-    public function gallery()
+    public function galleries()
     {
-        return $this->belongsTo('App\Models\Gallery');
+        return $this->belongsTo(Gallery::class);
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Models\PictureComment');
+        return $this->hasMany(PictureComment::class);
     }
 
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tag');
+        return $this->belongsToMany(Tag::class);
     }
 }
